@@ -1,0 +1,25 @@
+<html>
+    <head>
+        <title>Easy modal</title>
+    </head>
+    <body onload="init()">
+        <div id="app">
+            <h1>{{ msg }}</h1>
+            <easy-modal></easy-modal>
+        </div>
+        <script src="./node_modules/vue/dist/vue.js"></script>
+        <script src="./dist/easy-modal.js"></script>
+        <script>
+            function init() {
+
+                var app = new Vue({
+                    el: '#app',
+                    data: {
+                        msg: 'Easy Modal'
+                    }
+                })
+
+            }
+        </script>
+    </body>
+</html>
