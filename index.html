@@ -1,25 +1,44 @@
 <html>
-    <head>
-        <title>Easy modal</title>
-    </head>
-    <body onload="init()">
-        <div id="app">
-            <h1>{{ msg }}</h1>
-            <easy-modal></easy-modal>
-        </div>
-        <script src="./node_modules/vue/dist/vue.js"></script>
-        <script src="./dist/easy-modal.js"></script>
-        <script>
-            function init() {
 
-                var app = new Vue({
-                    el: '#app',
-                    data: {
-                        msg: 'Easy Modal'
+<head>
+    <title>Easy modal</title>
+</head>
+
+<body onload="init()">
+    <div id="app">
+        <h1>{{ msg }}</h1>
+        <button @click="open">Open</button>
+        <easy-modal :show="modal.show" @click-mask="clickModalMask">
+            <template slot="body">
+                <div style="letter-spacing: 2px;">可以点击外围黑色部分进行关闭</div>
+            </template>
+        </easy-modal>
+    </div>
+    <script src="./node_modules/vue/dist/vue.js"></script>
+    <script src="./dist/easy-modal.js"></script>
+    <script>
+        function init() {
+
+            var app = new Vue({
+                el: '#app',
+                data: {
+                    msg: 'Easy Modal',
+                    modal: {
+                        show: false
                     }
-                })
+                },
+                methods: {
+                    open: function () {
+                        this.modal.show = true
+                    },
+                    clickModalMask: function () {
+                        this.modal.show = false
+                    }
+                }
+            })
 
-            }
-        </script>
-    </body>
+        }
+    </script>
+</body>
+
 </html>
