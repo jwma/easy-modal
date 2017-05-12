@@ -2,17 +2,17 @@
   "name": "easy-modal",
   "version": "0.0.1",
   "description": "A simple modal vue component.",
-  "main": "index.js",
+  "main": "dist/easy-modal.js",
   "scripts": {
     "build": "webpack"
   },
   "keywords": [
     "vue",
     "modal",
-    "component"
+    "components"
   ],
   "author": "MJ",
-  "license": "ISC",
+  "license": "MIT",
   "devDependencies": {
     "babel-core": "^6.24.1",
     "babel-loader": "^7.0.0",
