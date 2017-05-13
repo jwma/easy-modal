@@ -2,16 +2,35 @@
 
 <head>
     <title>Easy modal</title>
+    <style>
+        .modal-body {
+            position: absolute;
+            z-index: 9999;
+            top: 20%;
+            left: 0;
+            right: 0;
+            background-color: #fff;
+            border-radius: 10px;
+            width: 360px;
+            padding: 20px 0;
+            margin: 0 auto;
+            text-align: center;
+        }
+    </style>
 </head>
 
 <body onload="init()">
     <div id="app">
         <h1>{{ msg }}</h1>
         <button @click="open">Open</button>
-        <easy-modal :show="modal.show" @click-mask="clickModalMask">
-            <template slot="body">
-                <div style="letter-spacing: 2px;">可以点击外围黑色部分进行关闭</div>
-            </template>
+        <easy-modal 
+            :show="modal.show"
+            :type="1"
+            :with-cancel="modal.withCancel"
+            :with-yes="modal.withYes"
+            @click-mask="clickModalMask"
+            @cancel="cancel"
+            @yes="yes">
         </easy-modal>
     </div>
     <script src="./node_modules/vue/dist/vue.js"></script>
@@ -24,7 +43,9 @@
                 data: {
                     msg: 'Easy Modal',
                     modal: {
-                        show: false
+                        show: false,
+                        withCancel: true,
+                        withYes: true
                     }
                 },
                 methods: {
@@ -32,6 +53,12 @@
                         this.modal.show = true
                     },
                     clickModalMask: function () {
+                        this.modal.show = false
+                    },
+                    cancel: function() {
+                        this.modal.show = false
+                    },
+                    yes: function() {
                         this.modal.show = false
                     }
                 }
