@@ -4,9 +4,14 @@
     <title>Easy modal</title>
     <style>
         .modal2-body {
+            position: absolute;
+            z-index: 9999;
+            top: 20%;
+            left: 0;
+            right: 0;
             background-color: #fff;
             border-radius: 10px;
-            width: 360px;
+            width: 200px;
             padding: 20px 0;
             margin: 0 auto;
             text-align: center;
@@ -20,29 +25,31 @@
         <button @click="open(1)">Open: type1</button>
         <button @click="open(2)">Open: type2</button>
         <easy-modal 
-            :show="modal1.show"
-            :type="1"
-            :with-cancel="modal1.withCancel"
-            :with-yes="modal1.withYes"
+            :show="modal1.show" 
+            :type="1" 
+            :with-cancel="modal1.withCancel" 
+            :with-yes="modal1.withYes" 
             :cancel-text="modal1.cancelText"
-            :yes-text="modal1.yesText"
-            @click-mask="clickModalMask(1)"
-            @cancel="cancel(1)"
+            :yes-text="modal1.yesText" 
+            :body-style="modal1.bodyStyle"
+            :mask-style="modal1.maskStyle"
+            @click-mask="clickModalMask(1)" 
+            @cancel="cancel(1)" 
             @yes="yes(1)">
             <template slot="content">确定要执行这个操作吗？</template>
         </easy-modal>
         <easy-modal 
-            :show="modal2.show"
-            :type="2"
-            :with-cancel="modal2.withCancel"
-            :with-yes="modal2.withYes"
+            :show="modal2.show" 
+            :type="2" 
+            :with-cancel="modal2.withCancel" 
+            :with-yes="modal2.withYes" 
             @click-mask="clickModalMask(2)"
-            @cancel="cancel(2)"
+            @cancel="cancel(2)" 
             @yes="yes(2)">
             <template slot="body">
                 <div class="modal2-body">
-                    type 2
-                    <button @click="cancel(2)">关闭</button>
+                    你收到一条通知
+                    <span @click="cancel(2)" style="cursor: pointer; font-size: 30px;">&times;</span>
                 </div>
             </template>
         </easy-modal>
@@ -61,7 +68,14 @@
                         withCancel: true,
                         withYes: true,
                         cancelText: '取消',
-                        yesText: '确定'
+                        yesText: '确定',
+                        bodyStyle: {
+                            backgroundColor: '#fff',
+                            top: '15%'
+                        },
+                        maskStyle: {
+                            backgroundColor: 'rgba(0, 0, 0, .7)'
+                        }
                     },
                     modal2: {
                         show: false
@@ -74,10 +88,10 @@
                     clickModalMask: function (type) {
                         this['modal' + type] && (this['modal' + type].show = false)
                     },
-                    cancel: function(type) {
+                    cancel: function (type) {
                         this['modal' + type] && (this['modal' + type].show = false)
                     },
-                    yes: function(type) {
+                    yes: function (type) {
                         this['modal' + type] && (this['modal' + type].show = false)
                     }
                 }
