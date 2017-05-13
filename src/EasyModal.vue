@@ -51,8 +51,8 @@
                         <slot name="content">Easy modal: type 1</slot>
                     </div>
                     <div class="em__buttons" v-show="withCancel && withYes">
-                        <button v-show="withCancel" @click="cancel">Cancel</button>
-                        <button v-show="withYes" @click="yes">Yes</button>
+                        <button v-show="withCancel" @click="cancel">{{ cancelText }}</button>
+                        <button v-show="withYes" @click="yes">{{ yesText }}</button>
                     </div>
                 </div>
             </template>
@@ -84,6 +84,16 @@ export default {
             type: Boolean,
             required: false,
             default: true
+        },
+        cancelText: {
+            type: String,
+            required: false,
+            default: 'Cancel'
+        },
+        yesText: {
+            type: String,
+            required: false,
+            default: 'Yes'
         }
     },
     methods: {

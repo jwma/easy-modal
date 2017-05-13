@@ -3,12 +3,7 @@
 <head>
     <title>Easy modal</title>
     <style>
-        .modal-body {
-            position: absolute;
-            z-index: 9999;
-            top: 20%;
-            left: 0;
-            right: 0;
+        .modal2-body {
             background-color: #fff;
             border-radius: 10px;
             width: 360px;
@@ -22,15 +17,34 @@
 <body onload="init()">
     <div id="app">
         <h1>{{ msg }}</h1>
-        <button @click="open">Open</button>
+        <button @click="open(1)">Open: type1</button>
+        <button @click="open(2)">Open: type2</button>
         <easy-modal 
-            :show="modal.show"
+            :show="modal1.show"
             :type="1"
-            :with-cancel="modal.withCancel"
-            :with-yes="modal.withYes"
-            @click-mask="clickModalMask"
-            @cancel="cancel"
-            @yes="yes">
+            :with-cancel="modal1.withCancel"
+            :with-yes="modal1.withYes"
+            :cancel-text="modal1.cancelText"
+            :yes-text="modal1.yesText"
+            @click-mask="clickModalMask(1)"
+            @cancel="cancel(1)"
+            @yes="yes(1)">
+            <template slot="content">确定要执行这个操作吗？</template>
+        </easy-modal>
+        <easy-modal 
+            :show="modal2.show"
+            :type="2"
+            :with-cancel="modal2.withCancel"
+            :with-yes="modal2.withYes"
+            @click-mask="clickModalMask(2)"
+            @cancel="cancel(2)"
+            @yes="yes(2)">
+            <template slot="body">
+                <div class="modal2-body">
+                    type 2
+                    <button @click="cancel(2)">关闭</button>
+                </div>
+            </template>
         </easy-modal>
     </div>
     <script src="./node_modules/vue/dist/vue.js"></script>
@@ -42,24 +56,29 @@
                 el: '#app',
                 data: {
                     msg: 'Easy Modal',
-                    modal: {
+                    modal1: {
                         show: false,
                         withCancel: true,
-                        withYes: true
+                        withYes: true,
+                        cancelText: '取消',
+                        yesText: '确定'
+                    },
+                    modal2: {
+                        show: false
                     }
                 },
                 methods: {
-                    open: function () {
-                        this.modal.show = true
+                    open: function (type) {
+                        this['modal' + type] && (this['modal' + type].show = true)
                     },
-                    clickModalMask: function () {
-                        this.modal.show = false
+                    clickModalMask: function (type) {
+                        this['modal' + type] && (this['modal' + type].show = false)
                     },
-                    cancel: function() {
-                        this.modal.show = false
+                    cancel: function(type) {
+                        this['modal' + type] && (this['modal' + type].show = false)
                     },
-                    yes: function() {
-                        this.modal.show = false
+                    yes: function(type) {
+                        this['modal' + type] && (this['modal' + type].show = false)
                     }
                 }
             })
