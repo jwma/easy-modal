@@ -1,4 +1,4 @@
-<style>
+<style lang="scss">
 .em__mask {
     position: fixed;
     top: 0;
@@ -28,14 +28,14 @@
 .em__buttons {
     display: flex;
     margin-top: 15px;
-}
 
-.em__buttons button {
-    font-size: 14px;
-}
+    button {
+        font-size: 14px;
+    }
 
-.em__buttons button+button {
-    margin-left: 10px;
+    button+button {
+        margin-left: 10px;
+    }
 }
 </style>
 <template>
