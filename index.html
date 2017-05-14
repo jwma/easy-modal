@@ -27,15 +27,18 @@
         <easy-modal 
             :show="modal1.show" 
             :type="1" 
+            :with-times="modal1.withTimes"
             :with-cancel="modal1.withCancel" 
             :with-yes="modal1.withYes" 
             :cancel-text="modal1.cancelText"
             :yes-text="modal1.yesText" 
             :body-style="modal1.bodyStyle"
             :mask-style="modal1.maskStyle"
+            @times="clickModalMask(1)"
             @click-mask="clickModalMask(1)" 
             @cancel="cancel(1)" 
             @yes="yes(1)">
+            <template slot="title">提示</template>
             <template slot="content">确定要执行这个操作吗？</template>
         </easy-modal>
         <easy-modal 
@@ -65,6 +68,7 @@
                     msg: 'Easy Modal',
                     modal1: {
                         show: false,
+                        withTimes: true,
                         withCancel: true,
                         withYes: true,
                         cancelText: '取消',
