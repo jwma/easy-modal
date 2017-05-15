@@ -44,11 +44,7 @@
         <easy-modal 
             :show="modal2.show" 
             :type="2" 
-            :with-cancel="modal2.withCancel" 
-            :with-yes="modal2.withYes" 
-            @click-mask="clickModalMask(2)"
-            @cancel="cancel(2)" 
-            @yes="yes(2)">
+            @click-mask="clickModalMask(2)">
             <template slot="body">
                 <div class="modal2-body">
                     你收到一条通知
