@@ -1,7 +1,7 @@
 {
   "name": "easy-modal",
   "version": "0.0.1",
-  "description": "A simple modal vue component.",
+  "description": "一个简单的Vue模态组件",
   "repository": {
     "type": "git",
     "url": "https://github.com/jwma/easy-modal"
