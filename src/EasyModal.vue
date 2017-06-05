@@ -71,7 +71,7 @@
                 <div class="em__content">
                     <slot name="content">Easy modal: type 1</slot>
                 </div>
-                <div class="em__buttons" v-show="withCancel && withYes">
+                <div class="em__buttons" v-show="withCancel || withYes">
                     <button v-show="withCancel" @click="cancel">{{ cancelText }}</button>
                     <button v-show="withYes" @click="yes">{{ yesText }}</button>
                 </div>
